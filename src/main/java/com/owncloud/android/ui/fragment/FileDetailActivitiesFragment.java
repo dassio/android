@@ -33,7 +33,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -125,9 +124,6 @@ public class FileDetailActivitiesFragment extends Fragment implements
 
     @BindView(R.id.empty_list_icon)
     public ImageView emptyContentIcon;
-
-    @BindView(R.id.empty_list_progress)
-    public ProgressBar emptyContentProgressBar;
 
     @BindView(android.R.id.list)
     public RecyclerView recyclerView;
@@ -239,7 +235,6 @@ public class FileDetailActivitiesFragment extends Fragment implements
         emptyContentHeadline.setText(R.string.file_list_loading);
         emptyContentMessage.setText("");
         emptyContentIcon.setVisibility(View.GONE);
-        emptyContentProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -258,8 +253,6 @@ public class FileDetailActivitiesFragment extends Fragment implements
         restoreFileVersionSupported = capability.getFilesVersioning().isTrue() &&
             serverVersion.compareTo(OwnCloudVersion.nextcloud_14) >= 0;
 
-        emptyContentProgressBar.getIndeterminateDrawable().setColorFilter(ThemeUtils.primaryAccentColor(getContext()),
-                                                                          PorterDuff.Mode.SRC_IN);
         emptyContentIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_activity, null));
 
         adapter = new ActivityAndVersionListAdapter(getContext(),
@@ -428,7 +421,6 @@ public class FileDetailActivitiesFragment extends Fragment implements
             emptyContentMessage.setText(message);
 
             emptyContentMessage.setVisibility(View.VISIBLE);
-            emptyContentProgressBar.setVisibility(View.GONE);
             emptyContentIcon.setVisibility(View.VISIBLE);
         }
     }
@@ -442,7 +434,6 @@ public class FileDetailActivitiesFragment extends Fragment implements
             emptyContentMessage.setText(message);
 
             emptyContentMessage.setVisibility(View.VISIBLE);
-            emptyContentProgressBar.setVisibility(View.GONE);
             emptyContentIcon.setVisibility(View.VISIBLE);
         }
     }
